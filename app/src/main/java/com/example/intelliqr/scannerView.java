@@ -1,9 +1,8 @@
 package com.example.intelliqr;
 
+import java.time.LocalTime; // import the LocalTime class
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -27,13 +26,13 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class scannerView extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     ZXingScannerView scannerView; // Declaring ZXingScannerView object
     DatabaseReference dbref; // Firebase database reference object
-
+    String m1 = "Meal 1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this); // Initializing ZXingScannerView
         setContentView(scannerView); // Setting the content view to ZXingScannerView
-        dbref = FirebaseDatabase.getInstance().getReference("qrdata"); // Getting reference to Firebase database
+        dbref = FirebaseDatabase.getInstance().getReference().child("hackathon").child("participants"); // Getting reference to Firebase database
 
         // Requesting camera permission using Dexter library
         Dexter.withContext(getApplicationContext())
@@ -59,15 +58,46 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
     // Handling the result of QR code scanning
     @Override
     public void handleResult(Result rawResult) {
-        MainActivity.scantext.setText(rawResult.getText()); // Setting scanned text to MainActivity's TextView
-        String data= rawResult.getText();
+        final String participantID = rawResult.getText();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalTime currentTime = LocalTime.now();
+            LocalTime Morning = LocalTime.of(8, 0);
+            LocalTime morning = LocalTime.of(11, 0);
 
-        dbref.push().setValue(data)
+            LocalTime Afternoon = LocalTime.of(14, 0);
+            LocalTime afternoon = LocalTime.of(15, 0);
+
+            LocalTime Night = LocalTime.of(21, 0);
+            LocalTime night = LocalTime.of(22, 0);
+
+            LocalTime gulu = LocalTime.of(21, 0);
+            LocalTime GULU = LocalTime.of(23, 59);
+
+            if (currentTime.isAfter(Morning) & (currentTime.isBefore(morning))) {
+                m1 = "Meal1";
+            }
+            else if (currentTime.isAfter(Afternoon)& (currentTime.isBefore(afternoon))) {
+                m1 = "Meal2";
+            }
+            else if (currentTime.isAfter(Night)& (currentTime.isBefore(night))){
+                m1 = "Meal3";
+            }
+            else if(currentTime.isAfter(gulu)& (currentTime.isBefore(GULU))){
+                m1="ishank bhaiya";
+            }
+        }
+
+        // Assuming participantID is the unique identifier for each participant
+        dbref.child(participantID).child(m1).setValue(true)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        MainActivity.scantext.setText("Data inserted Successfully");
+                        if (task.isSuccessful()) {
+                            MainActivity.scantext.setText(m1 +" for Participant " + participantID + " recorded successfully");
+                        } else {
+                            MainActivity.scantext.setText("Failed to record meal. Please try again.");
+                        }
                         onBackPressed(); // Going back after scanning
                     }
                 });
