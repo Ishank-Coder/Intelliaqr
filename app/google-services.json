@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "891163123350",
+    "firebase_url": "https://intelliaqr-default-rtdb.firebaseio.com",
+    "project_id": "intelliaqr",
+    "storage_bucket": "intelliaqr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891163123350:android:ff26674d2451fe71f46cb7",
+        "android_client_info": {
+          "package_name": "com.example.intelliqr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBizXb2qG40o4dnLQZv4Z36KJgOwmjAlD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
