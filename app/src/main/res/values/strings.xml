@@ -3,4 +3,6 @@
     <string name="scan_qrcode">Scan QRCode</string>
     <string name="demo_text">Demo Text</string>
     <string name="scan_qr_code">Scan QR Code</string>
+    <string name="trikon_meals">Trikon Meals</string>
+    <string name="scan_to_know_status">Scan to know Status</string>
 </resources>
