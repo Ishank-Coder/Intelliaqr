@@ -1,5 +1,7 @@
 package com.example.intelliqr;
 
+import java.util.Base64;
+
 import java.time.LocalDate;
 import java.time.LocalTime; // import the LocalTime class
 import java.util.Objects;
@@ -10,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.Manifest;
+
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +37,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 // This activity handles QR scanning
 public class scannerView extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     ZXingScannerView scannerView; // Declaring ZXingScannerView object
-    DatabaseReference dbref; // Firebase database reference object
+    DatabaseReference dbref;// Firebase database reference object
+    DatabaseReference dbref1; //Firebase database reference object2
     String m1 = "Meal";
 
     @Override
@@ -40,7 +47,7 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
         scannerView = new ZXingScannerView(this); // Initializing ZXingScannerView
         setContentView(scannerView); // Setting the content view to ZXingScannerView
         dbref = FirebaseDatabase.getInstance().getReference().child("hackathon").child("participants"); // Getting reference to Firebase database
-
+        dbref1 = FirebaseDatabase.getInstance().getReference().child("hackathon").child("invalid QRs");
         // Requesting camera permission using Dexter library
         Dexter.withContext(getApplicationContext())
                 .withPermission(Manifest.permission.CAMERA)
@@ -63,127 +70,171 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
     }
 
     // Handling the result of QR code scanning
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public void handleResult(Result rawResult) {
         final String participantID = rawResult.getText();
-
+        String encodedUrl = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDate today = LocalDate.now();
-            LocalDate date1 = LocalDate.parse("2024-04-06");  // Parse from a String
-            LocalDate date2 = LocalDate.parse("2024-04-07");    // parse from a string
-
-            if (today.equals(date1)) {
-                LocalTime currentTime = LocalTime.now();
-                LocalTime Morning = LocalTime.of(8, 0);
-                LocalTime morning = LocalTime.of(9, 0);
-
-                LocalTime Afternoon = LocalTime.of(13, 0);
-                LocalTime afternoon = LocalTime.of(20, 0);
-
-                LocalTime Night = LocalTime.of(21, 0);
-                LocalTime night = LocalTime.of(22, 0);
-
-                if (currentTime.isAfter(Morning) & (currentTime.isBefore(morning))) {
-                    m1 = "Breakfast";
-                } else if (currentTime.isAfter(Afternoon) & (currentTime.isBefore(afternoon))) {
-                    m1 = "Lunch";
-                } else if (currentTime.isAfter(Night) & (currentTime.isBefore(night))) {
-                    m1 = "Dinner";
-                }
-            } else if (today.equals(date2)) {
-                LocalTime currentTime = LocalTime.now();
-                LocalTime Morning = LocalTime.of(8, 0);
-                LocalTime morning = LocalTime.of(9, 0);
-
-                LocalTime Afternoon = LocalTime.of(14, 0);
-                LocalTime afternoon = LocalTime.of(15, 0);
-
-                if (currentTime.isAfter(Morning) & (currentTime.isBefore(morning))) {
-                    m1 = "Breakfast2";
-                } else if (currentTime.isAfter(Afternoon) & (currentTime.isBefore(afternoon))) {
-                    m1 = "Lunch2";
-                }
-            }
+            encodedUrl = Base64.getEncoder().encodeToString(participantID.getBytes());
         }
 
-        // Assuming participantID is the unique identifier for each participant
-        dbref.child(participantID).child(m1).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Check if the dataSnapshot exists and contains a boolean value
-                if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
-                    boolean existingValue = (boolean) dataSnapshot.getValue();
-                    // Now you have the existing value stored under the child "m1"
-                    if (existingValue) {
-                        // The value is already true, indicating it has been recorded before
-                        if (Objects.equals(m1, "Meal")){
-                            MainActivity.scantext.setText("Participant "+ participantID+" is late and has already taken their " + m1);
-                        }
-                        else{
-                            MainActivity.scantext.setText("Participant " + participantID + " has already taken their " + m1);
-                        }
-                        onBackPressed();
-                    }
-                    else {
-                        // The value is false or null, indicating it hasn't been recorded before or is unset
-                        // Proceed to set the value to true
-                        dbref.child(participantID).child(m1).setValue(true)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @SuppressLint("SetTextI18n")
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            if (Objects.equals(m1, "Meal")) {
-                                                MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
-                                            }
-                                            else{
-                                                MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
-                                            }
-                                            onBackPressed();
-                                        }
-                                        else {
-                                            MainActivity.scantext.setText("Failed to record meal. Please try again.");
-                                        }
-                                        onBackPressed(); // Going back after scanning
-                                    }
-                                });
-                    }
-                }
-                else {
-                    // Handle the case where the value doesn't exist or is null
-                    // Proceed to set the value to true as it doesn't exist or is null
-                    dbref.child(participantID).child(m1).setValue(true)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @SuppressLint("SetTextI18n")
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        if (Objects.equals(m1, "Meal")) {
-                                            MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
-                                        }
-                                        else{
-                                            MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
-                                        }
-                                        onBackPressed();
-                                    }
-                                    else {
-                                        MainActivity.scantext.setText("Failed to record meal. Please try again.");
-                                    }
-                                    onBackPressed(); // Going back after scanning
-                                }
-                            });
-                }
-            }
 
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle potential errors here
-                MainActivity.scantext.setText("Error reading value from Firebase Database: " + databaseError.getMessage());
+        int i;
+        String[] array = new String[200];
+        for (i = 1; i <= 151; i++) {
+            array[i] = String.format("%03d", i); // Storing even numbers, you can change this to any sequence you want
+        }
+
+        for (i = 1; i <= 151; i++) {
+            if (Objects.equals(array[i], String.format(participantID))) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
+                    LocalDate today = LocalDate.now();
+                    LocalDate date1 = LocalDate.parse("2024-04-09");  // Parse from a String
+                    LocalDate date2 = LocalDate.parse("2024-04-10");    // parse from a string
+
+                    if (today.equals(date1)) {
+                        LocalTime currentTime = LocalTime.now();
+
+                        LocalTime Afternoon = LocalTime.of(12, 30);
+                        LocalTime afternoon = LocalTime.of(14, 30);
+
+                        LocalTime Evening = LocalTime.of(17, 30);
+                        LocalTime evening = LocalTime.of(19, 30);
+
+                        LocalTime Night = LocalTime.of(20, 30);
+                        LocalTime night = LocalTime.of(22, 30);
+
+                        if (currentTime.isAfter(Evening) & (currentTime.isBefore(evening))) {
+                            m1 = "Evening Snack";
+                        }
+                        else if (currentTime.isAfter(Afternoon) & (currentTime.isBefore(afternoon))) {
+                            m1 = "Lunch";
+                        }
+                        else if (currentTime.isAfter(Night) & (currentTime.isBefore(night))) {
+                            m1 = "Dinner";
+                        }
+
+                    } else if (today.equals(date2)) {
+                        LocalTime currentTime = LocalTime.now();
+                        LocalTime Morning = LocalTime.of(7, 30);
+                        LocalTime morning = LocalTime.of(9, 30);
+
+                        LocalTime LateNight = LocalTime.of(0, 30);
+                        LocalTime lateNight = LocalTime.of(2, 30);
+
+                        if (currentTime.isAfter(Morning) & (currentTime.isBefore(morning))) {
+                            m1 = "Breakfast";
+                        } else if (currentTime.isAfter(LateNight) & (currentTime.isBefore(lateNight))) {
+                            m1 = "Late Night Snack";
+                        }
+                    }
+                }
+                // Assuming participantID is the unique identifier for each participant
+                dbref.child(participantID).child(m1).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // Check if the dataSnapshot exists and contains a boolean value
+                        if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
+                            boolean existingValue = (boolean) dataSnapshot.getValue();
+                            // Now you have the existing value stored under the child "m1"
+                            if (existingValue) {
+                                // The value is already true, indicating it has been recorded before
+                                if (Objects.equals(m1, "Meal")) {
+                                    MainActivity.scantext.setText("Participant " + participantID + " is late and has already taken their " + m1);
+                                    MainActivity.tickImageView.setVisibility(View.GONE);
+                                    MainActivity.cautionImageView.setVisibility(View.GONE);
+                                    MainActivity.crossImageView.setVisibility(View.VISIBLE);
+
+                                } else {
+                                    MainActivity.scantext.setText("Participant " + participantID + " has already taken their " + m1);
+                                    MainActivity.tickImageView.setVisibility(View.GONE);
+                                    MainActivity.cautionImageView.setVisibility(View.GONE);
+                                    MainActivity.crossImageView.setVisibility(View.VISIBLE);
+
+                                }
+                                onBackPressed();
+                            } else {
+                                // The value is false or null, indicating it hasn't been recorded before or is unset
+                                // Proceed to set the value to true
+                                dbref.child(participantID).child(m1).setValue(true)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @SuppressLint("SetTextI18n")
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    if (Objects.equals(m1, "Meal")) {
+                                                        MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
+                                                        MainActivity.tickImageView.setVisibility(View.GONE);
+                                                        MainActivity.crossImageView.setVisibility(View.GONE);
+                                                        MainActivity.cautionImageView.setVisibility(View.VISIBLE);
+
+                                                    } else {
+                                                        MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
+                                                        MainActivity.crossImageView.setVisibility(View.GONE);
+                                                        MainActivity.cautionImageView.setVisibility(View.GONE);
+                                                        MainActivity.tickImageView.setVisibility(View.VISIBLE);
+
+                                                    }
+                                                    onBackPressed();
+                                                } else {
+                                                    MainActivity.scantext.setText("Failed to record meal. Please try again.");
+                                                }
+
+                                                onBackPressed(); // Going back after scanning
+                                            }
+                                        });
+                            }
+                        } else {
+                            // Handle the case where the value doesn't exist or is null
+                            // Proceed to set the value to true as it doesn't exist or is null
+                            dbref.child(participantID).child(m1).setValue(true)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @SuppressLint("SetTextI18n")
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                if (Objects.equals(m1, "Meal")) {
+                                                    MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
+                                                    MainActivity.tickImageView.setVisibility(View.GONE);
+                                                    MainActivity.crossImageView.setVisibility(View.GONE);
+                                                    MainActivity.cautionImageView.setVisibility(View.VISIBLE);
+
+                                                } else {
+                                                    MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
+                                                    MainActivity.crossImageView.setVisibility(View.GONE);
+                                                    MainActivity.cautionImageView.setVisibility(View.GONE);
+                                                    MainActivity.tickImageView.setVisibility(View.VISIBLE);
+
+                                                }
+                                                onBackPressed();
+                                            } else {
+                                                MainActivity.scantext.setText("Failed to record meal. Please try again.");
+                                            }
+
+                                            onBackPressed(); // Going back after scanning
+                                        }
+                                    });
+                        }
+                    }
+
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle potential errors here
+                        MainActivity.scantext.setText("Error reading value from Firebase Database: " + databaseError.getMessage());
+                    }
+                });
+            } else if (!Objects.equals(array[i], String.format(participantID))) {
+                dbref1.child(encodedUrl).setValue(participantID);
+                MainActivity.scantext.setText("This is an invalid QR");
+                onBackPressed();
             }
-        });
+        }
     }
+
 
     @Override
     protected void onPause() {
@@ -197,4 +248,5 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
         scannerView.setResultHandler(this); // Setting result handler for ZXingScannerView
         scannerView.startCamera(); // Starting camera when activity is resumed
     }
+
 }
