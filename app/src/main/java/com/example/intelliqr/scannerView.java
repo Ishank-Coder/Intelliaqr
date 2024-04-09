@@ -91,8 +91,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
                     LocalDate today = LocalDate.now();
-                    LocalDate date1 = LocalDate.parse("2024-04-09");  // Parse from a String
-                    LocalDate date2 = LocalDate.parse("2024-04-10");    // parse from a string
+                    LocalDate date1 = LocalDate.parse("2024-04-10");  // Parse from a String
+                    LocalDate date2 = LocalDate.parse("2024-04-11");    // parse from a string
 
                     if (today.equals(date1)) {
                         LocalTime currentTime = LocalTime.now();
@@ -227,9 +227,14 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                         MainActivity.scantext.setText("Error reading value from Firebase Database: " + databaseError.getMessage());
                     }
                 });
-            } else if (!Objects.equals(array[i], String.format(participantID))) {
+            }
+            else if (!Objects.equals(array[i], String.format(participantID))) {
+                assert encodedUrl != null;
                 dbref1.child(encodedUrl).setValue(participantID);
                 MainActivity.scantext.setText("This is an invalid QR");
+                MainActivity.tickImageView.setVisibility(View.GONE);
+                MainActivity.cautionImageView.setVisibility(View.GONE);
+                MainActivity.crossImageView.setVisibility(View.VISIBLE);
                 onBackPressed();
             }
         }
