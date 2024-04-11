@@ -7,4 +7,7 @@
     <string name="scan_to_know_status">Scan to know Status</string>
     <string name="todo">TODO</string>
     <string name="status">Status</string>
+    <string name="scan_for_meals">Scan for Meals</string>
+    <string name="trikon">Trikon</string>
+    <string name="m2m_planner">M2M Planner</string>
 </resources>

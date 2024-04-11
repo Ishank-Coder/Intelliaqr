@@ -22,11 +22,16 @@
             android:name=".scannerView"
             android:exported="false" />
         <activity
+            android:name=".plannerBtn"
+            android:exported="false" />
+        <activity
+            android:name=".socialView"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

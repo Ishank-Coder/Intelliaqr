@@ -9,10 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
+
+import java.time.Clock;
 
 public class MainActivity extends AppCompatActivity {
     Button scanbtn;
+    Button plannerbtn;
+    Button socialbtn;
+
+    @SuppressLint("StaticFieldLeak")
+    static TextClock textClock;
     @SuppressLint("StaticFieldLeak")
     public static TextView scantext;
     @SuppressLint("StaticFieldLeak")
@@ -30,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     static ImageView twitter;
 
-    @SuppressLint("CutPasteId")
+    @SuppressLint({"CutPasteId", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +47,14 @@ public class MainActivity extends AppCompatActivity {
         scantext = findViewById(R.id.scantext);
         scanbtn = findViewById(R.id.scanbtn);
 
+        textClock = findViewById(R.id.textClock);
+
         tickImageView = findViewById(R.id.tickImageView);
         crossImageView = findViewById(R.id.crossImageView);
         cautionImageView = findViewById(R.id.cautionImageView);
+
+        plannerbtn = findViewById(R.id.plannerbtn);
+        socialbtn = findViewById(R.id.socialbtn);
 
         instagram = findViewById(R.id.instagram);
         linkedin = findViewById(R.id.linkedin);
@@ -52,6 +65,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), scannerView.class));
+            }
+        });
+
+        textClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), plannerBtn.class));
+            }
+        });
+
+        plannerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), plannerBtn.class));
+            }
+        });
+
+        socialbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), socialView.class));
             }
         });
 

@@ -5,20 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg4"
     tools:context=".MainActivity">
 
 
     <Button
         android:id="@+id/scanbtn"
-        android:layout_width="309dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="248dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/scan_qr_code"
-        android:textSize="24sp"
+        android:layout_width="255dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="292dp"
+        android:backgroundTint="#454242"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/scan_for_meals"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scantext"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.648" />
 
     <ImageView
         android:id="@+id/cautionImageView"
@@ -65,31 +68,31 @@
         android:id="@+id/scantext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="336dp"
+        android:layout_marginBottom="212dp"
         android:text="@string/status"
         android:textColor="#F3F3F3"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scanbtn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.128" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="191dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="226dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="cursive"
-        android:text="@string/trikon_meals"
+        android:text="@string/trikon"
         android:textAlignment="center"
         android:textColor="#FFFCFC"
-        android:textSize="70sp"
+        android:textSize="85sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,13 +100,11 @@
         android:id="@+id/imageView4"
         android:layout_width="135dp"
         android:layout_height="145dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/scanbtn"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189"
         app:srcCompat="@drawable/intellia" />
 
     <ImageView
@@ -159,6 +160,53 @@
         app:layout_constraintTop_toBottomOf="@+id/scantext"
         app:layout_constraintVertical_bias="0.987"
         app:srcCompat="@drawable/twitter" />
+
+    <Button
+        android:id="@+id/plannerbtn"
+        android:layout_width="254dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="212dp"
+        android:backgroundTint="#454242"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/m2m_planner"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/socialbtn"
+        android:layout_width="248dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="64dp"
+        android:backgroundTint="#454242"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Our Socials"
+        android:textColor="#FFFFFF"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextClock
+        android:id="@+id/textClock"
+        android:layout_width="317dp"
+        android:layout_height="105dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAlignment="center"
+        android:textColor="#FFFCFC"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/socialbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanbtn"
+        app:layout_constraintVertical_bias="0.638" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

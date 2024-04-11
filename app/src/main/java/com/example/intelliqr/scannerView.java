@@ -144,19 +144,24 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                 // The value is already true, indicating it has been recorded before
                                 if (Objects.equals(m1, "Meal")) {
                                     MainActivity.scantext.setText("Participant " + participantID + " is late and has already taken their " + m1);
+                                    MainActivity.textClock.setVisibility(View.GONE);
+                                    MainActivity.scantext.setVisibility(View.VISIBLE);
                                     MainActivity.tickImageView.setVisibility(View.GONE);
                                     MainActivity.cautionImageView.setVisibility(View.GONE);
                                     MainActivity.crossImageView.setVisibility(View.VISIBLE);
 
                                 } else {
                                     MainActivity.scantext.setText("Participant " + participantID + " has already taken their " + m1);
+                                    MainActivity.textClock.setVisibility(View.GONE);
+                                    MainActivity.scantext.setVisibility(View.VISIBLE);
                                     MainActivity.tickImageView.setVisibility(View.GONE);
                                     MainActivity.cautionImageView.setVisibility(View.GONE);
                                     MainActivity.crossImageView.setVisibility(View.VISIBLE);
 
                                 }
                                 onBackPressed();
-                            } else {
+                            }
+                            else {
                                 // The value is false or null, indicating it hasn't been recorded before or is unset
                                 // Proceed to set the value to true
                                 dbref.child(participantID).child(m1).setValue(true)
@@ -167,27 +172,36 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                                 if (task.isSuccessful()) {
                                                     if (Objects.equals(m1, "Meal")) {
                                                         MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
+                                                        dbref.child(participantID).child(m1).setValue("late");
+                                                        MainActivity.textClock.setVisibility(View.GONE);
+                                                        MainActivity.scantext.setVisibility(View.VISIBLE);
                                                         MainActivity.tickImageView.setVisibility(View.GONE);
                                                         MainActivity.crossImageView.setVisibility(View.GONE);
                                                         MainActivity.cautionImageView.setVisibility(View.VISIBLE);
 
-                                                    } else {
+                                                    }
+                                                    else {
                                                         MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
+                                                        MainActivity.textClock.setVisibility(View.GONE);
+                                                        MainActivity.scantext.setVisibility(View.VISIBLE);
                                                         MainActivity.crossImageView.setVisibility(View.GONE);
                                                         MainActivity.cautionImageView.setVisibility(View.GONE);
                                                         MainActivity.tickImageView.setVisibility(View.VISIBLE);
 
                                                     }
                                                     onBackPressed();
-                                                } else {
+                                                }
+                                                else {
                                                     MainActivity.scantext.setText("Failed to record meal. Please try again.");
+                                                    MainActivity.scantext.setVisibility(View.VISIBLE);
                                                 }
 
                                                 onBackPressed(); // Going back after scanning
                                             }
                                         });
                             }
-                        } else {
+                        }
+                        else {
                             // Handle the case where the value doesn't exist or is null
                             // Proceed to set the value to true as it doesn't exist or is null
                             dbref.child(participantID).child(m1).setValue(true)
@@ -197,21 +211,29 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 if (Objects.equals(m1, "Meal")) {
+                                                    dbref.child(participantID).child(m1).setValue("late");
                                                     MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
+                                                    MainActivity.textClock.setVisibility(View.GONE);
+                                                    MainActivity.scantext.setVisibility(View.VISIBLE);
                                                     MainActivity.tickImageView.setVisibility(View.GONE);
                                                     MainActivity.crossImageView.setVisibility(View.GONE);
                                                     MainActivity.cautionImageView.setVisibility(View.VISIBLE);
 
-                                                } else {
+                                                }
+                                                else {
                                                     MainActivity.scantext.setText("Participant " + participantID + ", enjoy your " + m1);
+                                                    MainActivity.textClock.setVisibility(View.GONE);
+                                                    MainActivity.scantext.setVisibility(View.VISIBLE);
                                                     MainActivity.crossImageView.setVisibility(View.GONE);
                                                     MainActivity.cautionImageView.setVisibility(View.GONE);
                                                     MainActivity.tickImageView.setVisibility(View.VISIBLE);
 
                                                 }
                                                 onBackPressed();
-                                            } else {
+                                            }
+                                            else {
                                                 MainActivity.scantext.setText("Failed to record meal. Please try again.");
+                                                MainActivity.scantext.setVisibility(View.VISIBLE);
                                             }
 
                                             onBackPressed(); // Going back after scanning
@@ -232,6 +254,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                 assert encodedUrl != null;
                 dbref1.child(encodedUrl).setValue(participantID);
                 MainActivity.scantext.setText("This is an invalid QR");
+                MainActivity.textClock.setVisibility(View.GONE);
+                MainActivity.scantext.setVisibility(View.VISIBLE);
                 MainActivity.tickImageView.setVisibility(View.GONE);
                 MainActivity.cautionImageView.setVisibility(View.GONE);
                 MainActivity.crossImageView.setVisibility(View.VISIBLE);
