@@ -30,13 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     static ImageView cautionImageView;
     @SuppressLint("StaticFieldLeak")
-    static ImageView instagram;
-    @SuppressLint("StaticFieldLeak")
-    static ImageView linkedin;
-    @SuppressLint("StaticFieldLeak")
-    static ImageView whatsapp;
-    @SuppressLint("StaticFieldLeak")
-    static ImageView twitter;
+    static ImageView loading;
 
     @SuppressLint({"CutPasteId", "MissingInflatedId"})
     @Override
@@ -56,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
         plannerbtn = findViewById(R.id.plannerbtn);
         socialbtn = findViewById(R.id.socialbtn);
 
-        instagram = findViewById(R.id.instagram);
-        linkedin = findViewById(R.id.linkedin);
-        whatsapp = findViewById(R.id.whatsapp);
-        twitter = findViewById(R.id.twitter);
+        loading = findViewById(R.id.loading);
+
+
 
         scanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,46 +100,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 startActivity(new Intent(getApplicationContext(), scannerView.class));
-            }
-        });
-
-        instagram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open a link when the image is clicked
-                String url = "https://www.instagram.com/intellia_miet/"; // Your URL here
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
-        linkedin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open a link when the image is clicked
-                String url = "https://www.linkedin.com/company/intellia-society/"; // Your URL here
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
-        whatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open a link when the image is clicked
-                String url = "https://chat.whatsapp.com/Lkhkp7Wx7PiHa1ToEZyLwL"; // Your URL here
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-
-        twitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open a link when the image is clicked
-                String url = "https://twitter.com/IntelliaSociety"; // Your URL here
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
             }
         });
     }

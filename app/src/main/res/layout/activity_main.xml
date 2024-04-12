@@ -107,60 +107,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/intellia" />
 
-    <ImageView
-        android:id="@+id/instagram"
-        android:layout_width="38dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scantext"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/insta" />
-
-    <ImageView
-        android:id="@+id/linkedin"
-        android:layout_width="46dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/instagram"
-        app:layout_constraintTop_toBottomOf="@+id/scantext"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/linkedin" />
-
-    <ImageView
-        android:id="@+id/whatsapp"
-        android:layout_width="47dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toEndOf="@+id/linkedin"
-        app:layout_constraintTop_toBottomOf="@+id/scantext"
-        app:layout_constraintVertical_bias="0.996"
-        app:srcCompat="@drawable/whatsapp" />
-
-    <ImageView
-        android:id="@+id/twitter"
-        android:layout_width="41dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="62dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toStartOf="@+id/whatsapp"
-        app:layout_constraintTop_toBottomOf="@+id/scantext"
-        app:layout_constraintVertical_bias="0.987"
-        app:srcCompat="@drawable/twitter" />
-
     <Button
         android:id="@+id/plannerbtn"
         android:layout_width="254dp"
@@ -179,9 +125,9 @@
 
     <Button
         android:id="@+id/socialbtn"
-        android:layout_width="248dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="315dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="#454242"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Our Socials"
@@ -190,7 +136,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextClock
@@ -206,7 +151,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scanbtn"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.542" />
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="197dp"
+        android:layout_height="187dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/socialbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanbtn"
+        app:srcCompat="@drawable/loading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,25 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2">
+    android:background="@drawable/bg4">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/instalogo"
         android:layout_width="87dp"
         android:layout_height="86dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288"
+        app:layout_constraintVertical_bias="0.316"
         app:srcCompat="@drawable/insta"
-        tools:layout_editor_absoluteX="149dp" />
+        tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/linkedinlogo"
         android:layout_width="93dp"
         android:layout_height="84dp"
         android:layout_marginEnd="56dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,11 +33,11 @@
         app:srcCompat="@drawable/linkedin" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/whatsapplogo"
         android:layout_width="97dp"
         android:layout_height="91dp"
         android:layout_marginStart="40dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,15 +45,16 @@
         app:srcCompat="@drawable/whatsapp" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/twitterlogo"
         android:layout_width="79dp"
         android:layout_height="90dp"
-        android:visibility="gone"
+        android:layout_marginStart="40dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.188"
-        app:srcCompat="@drawable/twitter"
-        tools:layout_editor_absoluteX="42dp" />
+        app:srcCompat="@drawable/twitter" />
 
     <TextView
         android:id="@+id/social_handles"
@@ -60,7 +64,7 @@
         android:text="Social Media Handles"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="48sp"
         android:textStyle="bold"
         android:visibility="visible"
@@ -72,15 +76,77 @@
         app:layout_constraintVertical_bias="0.033" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/intelliaWeblogo"
         android:layout_width="82dp"
         android:layout_height="89dp"
         android:layout_marginEnd="68dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.42"
         app:srcCompat="@drawable/intellia" />
+
+    <ImageView
+        android:id="@+id/instaqr"
+        android:layout_width="251dp"
+        android:layout_height="256dp"
+        android:layout_marginBottom="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instalogo"
+        app:layout_constraintVertical_bias="0.993"
+        app:srcCompat="@drawable/instaqr" />
+
+    <ImageView
+        android:id="@+id/intelliawebqr"
+        android:layout_width="257dp"
+        android:layout_height="248dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instalogo"
+        app:layout_constraintVertical_bias="0.706"
+        app:srcCompat="@drawable/intelliawebqr" />
+
+    <ImageView
+        android:id="@+id/linkedinqr"
+        android:layout_width="273dp"
+        android:layout_height="292dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instalogo"
+        app:layout_constraintVertical_bias="0.754"
+        app:srcCompat="@drawable/linkedinqr" />
+
+    <ImageView
+        android:id="@+id/twitterqr"
+        android:layout_width="255dp"
+        android:layout_height="267dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instalogo"
+        app:layout_constraintVertical_bias="0.656"
+        app:srcCompat="@drawable/twitterqr" />
+
+    <ImageView
+        android:id="@+id/whatsappqr"
+        android:layout_width="272dp"
+        android:layout_height="287dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instalogo"
+        app:layout_constraintVertical_bias="0.703"
+        app:srcCompat="@drawable/whatsappqr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
