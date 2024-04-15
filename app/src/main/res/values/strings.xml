@@ -10,4 +10,6 @@
     <string name="scan_for_meals">Scan for Meals</string>
     <string name="trikon">Trikon</string>
     <string name="m2m_planner">M2M Planner</string>
+    <string name="upcoming_no_activity">Upcoming: No Activity</string>
+    <string name="no_current_activity">No Current Activity</string>
 </resources>

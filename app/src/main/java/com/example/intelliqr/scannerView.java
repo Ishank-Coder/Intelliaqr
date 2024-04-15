@@ -145,7 +145,6 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                             // The value is already true, indicating it has been recorded before
                             if (Objects.equals(m1, "Meal")) {
                                 MainActivity.scantext.setText("Participant " + participantID + " is late and has already taken their " + m1);
-
                             }
                             else {
                                 MainActivity.scantext.setText("Participant " + participantID + " has already taken their " + m1);
@@ -169,7 +168,7 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                             if (task.isSuccessful()) {
                                                 if (Objects.equals(m1, "Meal")) {
                                                     MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
-                                                    dbref.child(participantID).child(m1).setValue("late");
+                                                    dbref.child(participantID).child(m1).setValue(true);
                                                     MainActivity.cautionImageView.setVisibility(View.VISIBLE);
                                                     MainActivity.tickImageView.setVisibility(View.GONE);
                                                 }
@@ -203,7 +202,7 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             if (Objects.equals(m1, "Meal")) {
-                                                dbref.child(participantID).child(m1).setValue("late");
+                                                dbref.child(participantID).child(m1).setValue(true);
                                                 MainActivity.scantext.setText("Participant " + participantID + " is late for their " + m1);
                                                 MainActivity.cautionImageView.setVisibility(View.VISIBLE);
                                                 MainActivity.tickImageView.setVisibility(View.GONE);

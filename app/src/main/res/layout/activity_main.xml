@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,6 +21,7 @@
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,7 +119,7 @@
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,6 +136,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextClock
@@ -151,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scanbtn"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintVertical_bias="0.295" />
 
     <ImageView
         android:id="@+id/loading"
@@ -163,6 +164,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scanbtn"
         app:srcCompat="@drawable/loading" />
+
+    <TextView
+        android:id="@+id/currentact"
+        android:layout_width="340dp"
+        android:layout_height="46dp"
+        android:text="@string/no_current_activity"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/socialbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textClock"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/upcomingact"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:text="@string/upcoming_no_activity"
+        android:textAlignment="center"
+        android:textColor="#F3F3F3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/socialbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentact"
+        app:layout_constraintVertical_bias="0.296" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
