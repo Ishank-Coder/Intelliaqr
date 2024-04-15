@@ -150,6 +150,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                 MainActivity.scantext.setText("Participant " + participantID + " has already taken their " + m1);
 
                             }
+                            MainActivity.upcomingact.setVisibility(View.GONE);
+                            MainActivity.currentact.setVisibility(View.GONE);
                             MainActivity.crossImageView.setVisibility(View.VISIBLE);
                             MainActivity.scantext.setVisibility(View.VISIBLE);
                             MainActivity.textClock.setVisibility(View.GONE);
@@ -178,6 +180,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                                     MainActivity.cautionImageView.setVisibility(View.GONE);
 
                                                 }
+                                                MainActivity.upcomingact.setVisibility(View.GONE);
+                                                MainActivity.currentact.setVisibility(View.GONE);
                                                 MainActivity.crossImageView.setVisibility(View.GONE);
                                                 MainActivity.scantext.setVisibility(View.VISIBLE);
                                                 MainActivity.textClock.setVisibility(View.GONE);
@@ -214,6 +218,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                                                 MainActivity.cautionImageView.setVisibility(View.GONE);
 
                                             }
+                                            MainActivity.upcomingact.setVisibility(View.GONE);
+                                            MainActivity.currentact.setVisibility(View.GONE);
                                             MainActivity.crossImageView.setVisibility(View.GONE);
                                             MainActivity.scantext.setVisibility(View.VISIBLE);
                                             MainActivity.textClock.setVisibility(View.GONE);
@@ -242,6 +248,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
             assert encodedUrl != null;
             dbref1.child(encodedUrl).setValue(participantID);
             MainActivity.scantext.setText("This is an invalid QR");
+            MainActivity.upcomingact.setVisibility(View.GONE);
+            MainActivity.currentact.setVisibility(View.GONE);
             MainActivity.crossImageView.setVisibility(View.VISIBLE);
             MainActivity.scantext.setVisibility(View.VISIBLE);
             MainActivity.textClock.setVisibility(View.GONE);

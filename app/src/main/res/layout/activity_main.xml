@@ -167,8 +167,8 @@
 
     <TextView
         android:id="@+id/currentact"
-        android:layout_width="340dp"
-        android:layout_height="46dp"
+        android:layout_width="383dp"
+        android:layout_height="68dp"
         android:text="@string/no_current_activity"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -183,8 +183,8 @@
 
     <TextView
         android:id="@+id/upcomingact"
-        android:layout_width="270dp"
-        android:layout_height="39dp"
+        android:layout_width="363dp"
+        android:layout_height="49dp"
         android:text="@string/upcoming_no_activity"
         android:textAlignment="center"
         android:textColor="#F3F3F3"

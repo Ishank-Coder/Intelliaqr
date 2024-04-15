@@ -7,54 +7,69 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class socialView extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
-    static ImageView instalogo;
+    static ImageView instaimg;
     @SuppressLint("StaticFieldLeak")
     static ImageView instaqr;
     @SuppressLint("StaticFieldLeak")
-    static ImageView linkedinlogo;
+    static ImageView linkedinimg;
     @SuppressLint("StaticFieldLeak")
     static ImageView linkedinqr;
     @SuppressLint("StaticFieldLeak")
-    static ImageView intelliaWeblogo;
+    static ImageView intelliaimg;
     @SuppressLint("StaticFieldLeak")
     static ImageView intelliawebqr;
     @SuppressLint("StaticFieldLeak")
-    static ImageView whatsapplogo;
+    static ImageView whatsappimg;
     @SuppressLint("StaticFieldLeak")
     static ImageView whatsappqr;
     @SuppressLint("StaticFieldLeak")
-    static ImageView twitterlogo;
+    static ImageView twitterimg;
     @SuppressLint("StaticFieldLeak")
     static ImageView twitterqr;
 
+    Button twitter;
+    Button linkedin;
+    Button instagram;
+    Button intelliawebsite;
+    Button whatsapp;
 
 
+
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_social);
 
         instaqr = findViewById(R.id.instaqr);
-        instalogo = findViewById(R.id.instalogo);
+        instaimg = findViewById(R.id.instaimg);
 
-        intelliaWeblogo = findViewById(R.id.intelliaWeblogo);
+        intelliaimg = findViewById(R.id.intelliaimg);
         intelliawebqr = findViewById(R.id.intelliawebqr);
 
-        linkedinlogo = findViewById(R.id.linkedinlogo);
+        linkedinimg = findViewById(R.id.linkedinimg);
         linkedinqr = findViewById(R.id.linkedinqr);
 
-        whatsapplogo = findViewById(R.id.whatsapplogo);
+        whatsappimg = findViewById(R.id.whatsappimg);
         whatsappqr = findViewById(R.id.whatsappqr);
 
-        twitterlogo = findViewById(R.id.twitterlogo);
+        twitterimg = findViewById(R.id.twitterimg);
         twitterqr = findViewById(R.id.twitterqr);
 
-        instalogo.setOnClickListener(new View.OnClickListener() {
+        twitter = findViewById(R.id.twitter);
+        instagram = findViewById(R.id.instagram);
+        linkedin = findViewById(R.id.linkedin);
+        intelliawebsite = findViewById(R.id.intelliawebsite);
+        whatsapp = findViewById(R.id.whatsapp);
+
+        instagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 socialView.intelliawebqr.setVisibility(View.GONE);
@@ -65,7 +80,7 @@ public class socialView extends AppCompatActivity {
             }
         });
 
-        intelliaWeblogo.setOnClickListener(new View.OnClickListener() {
+        intelliawebsite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 socialView.instaqr.setVisibility(View.GONE);
@@ -76,7 +91,7 @@ public class socialView extends AppCompatActivity {
             }
         });
 
-        whatsapplogo.setOnClickListener(new View.OnClickListener() {
+        whatsapp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 socialView.instaqr.setVisibility(View.GONE);
@@ -87,7 +102,7 @@ public class socialView extends AppCompatActivity {
             }
         });
 
-        twitterlogo.setOnClickListener(new View.OnClickListener() {
+        twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 socialView.instaqr.setVisibility(View.GONE);
@@ -98,7 +113,7 @@ public class socialView extends AppCompatActivity {
             }
         });
 
-        linkedinlogo.setOnClickListener(new View.OnClickListener() {
+        linkedin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 socialView.instaqr.setVisibility(View.GONE);
