@@ -12,4 +12,13 @@
     <string name="m2m_planner">M2M Planner</string>
     <string name="upcoming_no_activity">Upcoming: No Activity</string>
     <string name="no_current_activity">No Current Activity</string>
+    <string name="instagram">Instagram</string>
+    <string name="intellia_website">Intellia Website</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="meal_count">Meal Count</string>
+    <string name="_0">0</string>
+    <string name="_125">125</string>
+    <string name="meal_count_number">Meal Count Number:</string>
+    <string name="participant_meal_count">Participant Meal Count</string>
+    <string name="total_participants">Total Participants:</string>
 </resources>

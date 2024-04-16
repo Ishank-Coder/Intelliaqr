@@ -82,18 +82,18 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
         LocalDate today = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             today = LocalDate.now();
-            LocalDate date1 = LocalDate.parse("2024-04-12");  // Parse from a String
-            LocalDate date2 = LocalDate.parse("2024-04-13");    // parse from a string
+            LocalDate date1 = LocalDate.parse("2024-04-17");  // Parse from a String
+            LocalDate date2 = LocalDate.parse("2024-04-18");    // parse from a string
 
 
             if (today.equals(date1)) {
                 LocalTime currentTime = LocalTime.now();
 
-                LocalTime Afternoon = LocalTime.of(11, 30);
+                LocalTime Afternoon = LocalTime.of(12, 30);
                 LocalTime afternoon = LocalTime.of(14, 30);
 
-                LocalTime Evening = LocalTime.of(17, 30);
-                LocalTime evening = LocalTime.of(19, 30);
+                LocalTime Evening = LocalTime.of(16, 30);
+                LocalTime evening = LocalTime.of(18, 15);
 
                 LocalTime Night = LocalTime.of(20, 30);
                 LocalTime night = LocalTime.of(22, 30);
@@ -122,7 +122,6 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
                 }
             }
         }
-
 
         int i;
         String[] array = new String[192];
@@ -259,7 +258,6 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
         }
 
     }
-
 
     @Override
     protected void onPause() {

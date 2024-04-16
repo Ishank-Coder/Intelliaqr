@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button scanbtn;
     Button plannerbtn;
     Button socialbtn;
+    Button mcount;
 
     @SuppressLint("StaticFieldLeak")
     static TextClock textClock;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         currentact = findViewById(R.id.currentact);
         upcomingact = findViewById(R.id.upcomingact);
 
+        mcount = findViewById(R.id.mcount);
+
 
         scanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), plannerBtn.class));
+            }
+        });
+
+        mcount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), mcountView.class));
             }
         });
 
@@ -107,18 +117,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //this the section for the timeline on the home screen
         LocalDate today = null;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             today = LocalDate.now();
-            LocalDate date1 = LocalDate.parse("2024-04-15");  // Parse from a String
+            LocalDate date1 = LocalDate.parse("2024-04-17");  // Parse from a String
 
             if (today.equals(date1)) {
                 LocalDateTime currentTime = LocalDateTime.now();
                 LocalDateTime start = date1.atTime(8,59,59);
-
 
                 // if-else ladder to check which event is going on currently and display it on the timeline accordingly
                 //check in
@@ -303,6 +313,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+            }
+
+            else if(today.isBefore(date1)){
+                MainActivity.currentact.setText("No Current Activity");
+                MainActivity.upcomingact.setText("Check in (20 April 2024,9:00 A.M)");
             }
         }
     }
