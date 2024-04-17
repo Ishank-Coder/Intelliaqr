@@ -89,14 +89,14 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
             if (today.equals(date1)) {
                 LocalTime currentTime = LocalTime.now();
 
-                LocalTime Afternoon = LocalTime.of(12, 30);
-                LocalTime afternoon = LocalTime.of(14, 30);
+                LocalTime Afternoon = LocalTime.of(12, 0);
+                LocalTime afternoon = LocalTime.of(15, 30);
 
-                LocalTime Evening = LocalTime.of(16, 30);
-                LocalTime evening = LocalTime.of(18, 15);
+                LocalTime Evening = LocalTime.of(16, 0);
+                LocalTime evening = LocalTime.of(19, 0);
 
-                LocalTime Night = LocalTime.of(20, 30);
-                LocalTime night = LocalTime.of(22, 30);
+                LocalTime Night = LocalTime.of(19, 30);
+                LocalTime night = LocalTime.of(23, 0);
 
                 if (currentTime.isAfter(Evening) & (currentTime.isBefore(evening))) {
                     m1 = "Evening Snack";
@@ -109,11 +109,11 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
 
             } else if (today.equals(date2)) {
                 LocalTime currentTime = LocalTime.now();
-                LocalTime Morning = LocalTime.of(7, 30);
-                LocalTime morning = LocalTime.of(9, 30);
+                LocalTime Morning = LocalTime.of(7, 0);
+                LocalTime morning = LocalTime.of(11, 0);
 
-                LocalTime LateNight = LocalTime.of(0, 30);
-                LocalTime lateNight = LocalTime.of(2, 30);
+                LocalTime LateNight = LocalTime.of(0, 0);
+                LocalTime lateNight = LocalTime.of(3, 0);
 
                 if (currentTime.isAfter(Morning) & (currentTime.isBefore(morning))) {
                     m1 = "Breakfast";

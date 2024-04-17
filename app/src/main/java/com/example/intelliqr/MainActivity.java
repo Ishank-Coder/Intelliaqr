@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button plannerbtn;
     Button socialbtn;
     Button mcount;
+    Switch mealSwitch;
 
     @SuppressLint("StaticFieldLeak")
     static TextClock textClock;
@@ -66,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
         upcomingact = findViewById(R.id.upcomingact);
 
         mcount = findViewById(R.id.mcount);
+
+        mealSwitch = findViewById(R.id.mealswitch);
+
+        // Set initial state
+        scanbtn.setEnabled(mealSwitch.isChecked());
+
+        // Add switch state change listener
+        mealSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            scanbtn.setEnabled(isChecked);
+        });
 
 
         scanbtn.setOnClickListener(new View.OnClickListener() {
