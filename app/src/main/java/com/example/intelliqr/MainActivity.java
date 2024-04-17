@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             today = LocalDate.now();
-            LocalDate date1 = LocalDate.parse("2024-04-17");  // Parse from a String
+            LocalDate date1 = LocalDate.parse("2024-04-20");  // Parse from a String
 
             if (today.equals(date1)) {
                 LocalDateTime currentTime = LocalDateTime.now();
@@ -322,9 +322,6 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.currentact.setText("Winner Announcement");
                     MainActivity.upcomingact.setText("Upcoming: Pack Up");
                 }
-
-
-
             }
 
             else if(today.isBefore(date1)){

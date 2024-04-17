@@ -82,8 +82,8 @@ public class scannerView extends AppCompatActivity implements ZXingScannerView.R
         LocalDate today = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             today = LocalDate.now();
-            LocalDate date1 = LocalDate.parse("2024-04-17");  // Parse from a String
-            LocalDate date2 = LocalDate.parse("2024-04-18");    // parse from a string
+            LocalDate date1 = LocalDate.parse("2024-04-20");  // Parse from a String
+            LocalDate date2 = LocalDate.parse("2024-04-21");    // parse from a string
 
 
             if (today.equals(date1)) {
